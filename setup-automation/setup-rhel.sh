@@ -1,6 +1,8 @@
 #!/bin/bash
 USER=rhel
 
+
+
 echo "Adding wheel" > /root/post-run.log
 usermod -aG wheel rhel
 
@@ -21,3 +23,7 @@ chmod 666 /tmp/progress.log
 #echo "Origins = https://cockpit-${GUID}.${DOMAIN}" >> /etc/cockpit/cockpit.conf
 #echo "AllowUnencrypted = true" >> /etc/cockpit/cockpit.conf
 #systemctl enable --now cockpit.socket
+
+# Prep-Step for CTF challenges
+
+sudo yum install tmux lsof

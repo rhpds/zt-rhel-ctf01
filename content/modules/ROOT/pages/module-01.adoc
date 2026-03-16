@@ -1,39 +1,44 @@
-= Writing your lab: Can you fix this broken RHEL system?
+= Challenge: [RHEL-CTF01]
 
-== Variables
+== The Story
 
-The `lab_name` var, known as an asciidoc attribute, is set in `site.yml` and can be used to set the lab_name (Example: {lab_name}) or title of your content.
-They are both free to change its value and if you prefer to use a different var name, you can change the value of `lab_name`, for example to `title` in `site.yml` and then reference it in your content as `\{site-title}` (Ex: {site-title}).
+You've walked in to the office, and barely feel the warmth of your first mug of coffee when your boss, **Scott**, calmly walks up to you.
 
-Example:
-[source,asciidoc]
-----
-{my_var}
-----
+[quote, Scott]
+____
+Yeah, so look, theres a problem.  You were out yesterday, and... you know, I _couldn't_ bother you because of that pesky company policy thing...  Anyway, you know before being a manager, I did the same work as you, so I handled a few things for you.  You're welcome!
+____
 
-Variable rendered:
+He goes on to tell you that he setup some sudo rights for the web guys.  
 
-{my_var}
+[quote, Scott]
+____
+"They just want to be able to manage httpd.  Must be on some kinda power trip over there in the web group."
+____
 
-== Inserting Images
+**Scott** got started on one in `/etc/sudoers.d/webteam-sudo` but..well.. Contrary to his belief, it's not working.
 
-To display an image in your Antora documentation, place the image file in the `assets/images/` folder of the module, then reference it using the `image::[]` macro
+**The Problem:** Scott tried to edit a file in `/etc/sudoers.d/webteam-sudo`, but he made a mistake. Now, the `webteam` user can't do their job.
 
-=== Basic Syntax
+== Your Challenge
 
-[source,asciidoc]
-----
-image::example-image.png[Example Image, width=100, height=100]
-----
+Can you fix his sudoers drop-in so that it let's the "webteam" user restart (and otherwise manage) httpd via systemd?
 
-This will render the `example-image.png` image as it follows:
+* **Target File:** `/etc/sudoers.d/webteam-sudo`
+* **The Goal:** Allow the user `webteam` to use `sudo` for `systemctl` commands.
+* **The Catch:** They should be able to start, stop, and restart the `httpd` service **without** typing a password.
 
-image::example-image.png[Example Image, width=100, height=100]
+=== Helpful Info
+[cols="1,1"]
+|===
+|Username |Password
 
-=== Understanding the Antora Configuration
+|webteam
+|redhat
+|===
 
-This lab explains the purpose and structure of the YAML configuration used in an Antora-based documentation site.
+---
+**Lab Developers:**
 
-=== Basic Structure
-
-The configuration is written in YAML `ui-config.yml` and includes two main sections: `antora` and `tabs`. Click next to know more.
+* smcbrien@redhat.com
+* nlager@redhat.com
