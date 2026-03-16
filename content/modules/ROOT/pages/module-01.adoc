@@ -1,4 +1,4 @@
-= Writing your lab
+= Writing your lab: Can you fix this broken RHEL system?
 
 == Variables
 
